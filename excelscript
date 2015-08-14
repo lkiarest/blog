@@ -1,0 +1,101 @@
+Private Sub btnCalc_Click()
+    Dim targetVal As Double
+    Dim currentVal As Double
+    Dim span As Double
+    Dim subval As Double
+    Dim totalcnt As Integer
+    Dim isdefault As Boolean
+    
+    
+    '需要调整到的金额
+    If uf.fromTB.Value = "" Then
+        MsgBox ("必须输入哦")
+        
+    Else
+        currentVal = ActiveCell.Value
+        targetVal = uf.fromTB.Value
+
+        rowState = ActiveCell.Formula
+        xStart = InStr(1, rowState, "(")
+        xEnd = InStr(1, rowState, ")")
+        rowState = Mid(rowState, xStart + 1, xEnd - xStart - 1)
+        substate = Split(rowState, ":")
+        
+        xcol = Mid(substate(0), 1, 1)
+        xStartRow = Mid(substate(0), 2)
+        xEndRow = Mid(substate(1), 2)
+        totalcnt = xEndRow - xStartRow + 1
+        span = targetVal - currentVal
+
+        '哪一种表格
+        isdefault = cbExlStyle.Value
+
+With Worksheets(1)
+        Dim changeRow() As Integer
+        ReDim changeRow(totalcnt)
+        Dim total As Double
+
+        total = currentVal
+
+        If isdefault = True Then
+            For i = xStartRow To xEndRow
+    
+                subval = 0
+                subval = Range(xcol & i).Value
+                
+                If Range(xcol & i).Value = "" Then
+                    ' do nothing
+                Else
+                    substate = Range(xcol & i).Formula
+                    substate = Mid(substate, 2)
+                    substate = Split(substate, "*")
+    
+                    xsubcol = Mid(substate(0), 2)
+                    
+                    xsubstartrow = Mid(substate(1), 1, 1)
+                    xsubendrow = Mid(substate(0), 1, 1)
+                    
+                    '按比例分摊任务
+                    subval = subval + subval / total * span
+                    
+                    'Range("j" & xsubcol).Value = subval
+                    Range(xsubendrow & xsubcol).Value = subval / Range(xsubstartrow & xsubcol).Value
+                    'Range("k" & xsubcol).Value = subval / Range(xsubstartrow & xsubcol).Value
+    
+                End If
+            Next
+        Else
+            total = total - Range(xcol & xEndRow)
+            For i = xStartRow To xEndRow - 1
+    
+                subval = 0
+                subval = Range(xcol & i).Value
+                
+                If Range(xcol & i).Value = "" Then
+                    ' do nothing
+                Else
+                    substate = Range(xcol & i).Formula
+                    substate = Mid(substate, 2)
+                    substate = Split(substate, "*")
+    
+                    xsubcol = Mid(substate(0), 2)
+
+                    xsubstartrow = Mid(substate(0), 1, 1)
+                    xsubendrow = Mid(substate(1), 1, 1)
+
+                    
+                    '按比例分摊任务
+                    subval = subval + subval / total * span
+                    
+                    'Range("j" & xsubcol).Value = subval
+                    Range(xsubendrow & xsubcol).Value = subval / Range(xsubstartrow & xsubcol).Value
+                    'Range("k" & xsubcol).Value = subval / Range(xsubstartrow & xsubcol).Value
+    
+                End If
+            Next
+        End If
+        
+End With
+        
+    End If
+End Sub
