@@ -16,40 +16,34 @@
             <h1><?php $this->title() ?></h1>
             <div class="postinfo">
                 日期：<?php _e('时间: '); ?><time datetime="<?php $this->date('c'); ?>" itemprop="datePublished"><?php $this->date('F j, Y'); ?></time>
-                &nbsp;&nbsp;&nbsp;&nbsp;作者：<a itemprop="name" href="<?php $this->author->permalink(); ?>" rel="author"><?php $this->author(); ?></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                作者：<a itemprop="name" href="<?php $this->author->permalink(); ?>" rel="author"><?php $this->author(); ?></a>
             </div>
             <div class="content_a">
               <?php $this->content(); ?>
             </div>
-        <div class="response_rating">
+        <!--div class="response_rating">
             <ul>
-                <div class="thumbs-rating-container" id="thumbs-rating-281" data-content-id="281"><span class="thumbs-rating-up thumbs-rating-voted" onclick="thumbs_rating_vote(281, 1);" data-text="顶 +">2</span> <span class="thumbs-rating-down" onclick="thumbs_rating_vote(281, 2);" data-text="踩 -">0</span><span class="thumbs-rating-already-voted" data-text="您已经发表过意见了！"></span></div>   </ul>
-        </div>
+                <div class="thumbs-rating-container" id="thumbs-rating-281" data-content-id="281"><span class="thumbs-rating-up thumbs-rating-voted" onclick="thumbs_rating_vote(281, 1);" data-text="顶 +">2</span> <span class="thumbs-rating-down" onclick="thumbs_rating_vote(281, 2);" data-text="踩 -">0</span><span class="thumbs-rating-already-voted" data-text="您已经发表过意见了！"></span>
+                </div>
+           </ul>
+        </div-->
         <div class="response_comments_ajax">
-            <div class="response_wpfp_link">
-                <span class="wpfp-span"><img src="http://ku8.com/wp-content/plugins/wp-favorite-posts/img/star.png" alt="Favorite" title="Favorite" class="wpfp-img"><img src="http://ku8.com/wp-content/plugins/wp-favorite-posts/img/loading.gif" alt="Loading" title="Loading" class="wpfp-hide wpfp-img"><a class="wpfp-link" href="?wpfpaction=add&amp;postid=281" title="加入收藏" rel="nofollow">加入收藏</a></span>
-            </div>
-            <div class="comments_ajax_list_dib">
-                <a class="ico" url="http://ku8.com/a/281" href="http://ku8.com/a/281#comments">评论</a>
-                <div class="comments_ajax_list"></div>
-            </div>
+            <?php $this->need('comments.php'); ?>
         </div>
         <div class="refurl"> 
             <p class="title">请大胆传播</p>
-            <p class="post_url"><strong>本文地址：</strong><a href="http://ku8.com/a/281" rel="nofollow">http://ku8.com/a/281</a></p>
+            <p class="post_url"><strong>本文地址：</strong><a href="<?php $this->permalink() ?>"><?php $this->permalink() ?></a></p>
             <p class="gif_url"><strong>GIF图地址：</strong><a href="http://ww1.sinaimg.cn/mw690/5ff8df04gw1exavayk32ug208w050u0x.gif" rel="nofollow" target="_blank">http://ww1.sinaimg.cn/mw690/5ff8df04gw1exavayk32ug208w050u0x.gif</a></p>
         </div>
         <div class="clear"></div>
         <div class="adshow ad-single-content-bottom"></div>
-        <div class="tags">
-            <span class="tag">相关话题：<a href="http://ku8.com/tt/111" rel="tag">奶爸</a><a href="http://ku8.com/tt/110" rel="tag">找亮点</a></span>
-        </div>
         <div class="post-navigation">
             <div class="nav-previous nav-links">
-                上一篇（旧）：<a href="http://ku8.com/a/285" rel="prev">这是在用生命抢车位</a>
+                上一篇（旧）：<?php $this->thePrev('%s','没有了'); ?>
             </div>
             <div class="nav-next nav-links">
-                下一篇（新）：<a href="http://ku8.com/a/291" rel="next">社交达人，真不容易</a>
+                下一篇（新）：<?php $this->theNext('%s','没有了'); ?></li>
             </div>
         </div>
         <div class="content-ulike"></div>
