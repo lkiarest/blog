@@ -1,3 +1,59 @@
+/*-----------------------------------------------------------------------------------*/
+/* Thumbs Ratings Styles */
+/*-----------------------------------------------------------------------------------*/
+
+.thumbs-rating-container{
+  
+  padding:1em 0;
+  display: block;
+}
+
+.thumbs-rating-container span{
+  
+  cursor: pointer;
+}
+
+.thumbs-rating-container span:before{
+  
+  content: attr(data-text);
+}
+
+.thumbs-rating-container span:hover{
+  
+  color: #dddddd;
+}
+
+.thumbs-rating-container .thumbs-rating-up, .thumbs-rating-container .thumbs-rating-down{
+  
+  padding: 0.5em;
+  color: white;
+} 
+
+.thumbs-rating-container .thumbs-rating-up{
+    
+  background: #a4c346;
+}
+
+.thumbs-rating-container .thumbs-rating-down{
+  
+  background: #c84848;
+}
+
+.thumbs-rating-container .thumbs-rating-already-voted{
+  
+  padding-top: 1em;
+  font-size: 0.9em;
+  display: none;
+  
+  -webkit-transition: (all 0.3s);
+    transition: (all 0.3s);
+}
+
+.thumbs-rating-container .thumbs-rating-already-voted:before{
+  
+  content: attr(data-text);
+}
+
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dd,dl,dt,li,ol,ul,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,input,button,textarea{ margin: 0; padding: 0;-webkit-text-size-adjust:none;}
 img {border: 0 none; display: block; /* 解决图片在ie6中产生图片底部的3像素空白bug */-ms-interpolation-mode: bicubic; /* 解决图像缩放而产生的锯齿 */}
 ul, li { list-style-type: none;}
@@ -696,3 +752,4 @@ padding: 10px;
 font-size: 12px;
   word-wrap: break-word;
 }
+
